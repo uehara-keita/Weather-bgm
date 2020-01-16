@@ -1,0 +1,55 @@
+main h1, p{
+    color:white;
+}
+.list-info{
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 5px;
+    margin: 5px;
+}
+
+.addr-info{
+    background-color: dimgray;
+    color: #fff;
+    padding: 5px;
+}
+.list-info ul{
+    margin: 0;
+    padding: 0;
+}
+.list-info ul li{
+    display: inline-block;
+    padding: 10px;
+    color:black;
+    font-size: 20px;
+}
+.list-info li:not(:last-child){
+    border-right:2px solid dimgray;
+}
+
+.youtube{
+    opacity: .8;
+    padding: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+.button-back{
+    text-align: right;
+    margin-top: 10px;
+    margin-right: 5px;
+}
+.button-back input[type=submit]{
+	width: 80px;
+	padding: 0.8em;
+	text-align: center;
+	text-decoration: none;
+	color:dimgray;
+	border: 2px solid dimgray;
+	border-radius: 3px;
+	transition: .4s;
+}
+.button-back input[type=submit]:hover{
+    background: dimgray;
+	color:#fff;
+}
