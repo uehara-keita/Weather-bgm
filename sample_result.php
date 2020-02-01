@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>おてんきAPI</title>
+    <title>W-BGM System</title>
     <link rel="stylesheet" type="text/css" href="./css/result.css">
 
     <!--========== 背景画像の切り替え ==========-->
@@ -53,7 +53,7 @@
 <!--========== 天気情報処理 ==========-->
 <?php
     #darkskyのAPIkey
-    $key = "XXXXXXXXXXXXXXXXXXXXX"
+    $key = "XXXXXXXXXXXXXXXXXXXXXXX";
     #リクエストURL
     $req_d = "https://api.darksky.net/forecast/".$key."/".$lat.",".$lng."?units=si&lang=ja&exclude=alerts,flags";
 
@@ -76,7 +76,7 @@
 
 <!--========== ソース ==========-->
 <body>
-    /*天気情報の取得*/
+    <!-- 天気情報の表示 -->
     <div class=list-info>
         <ul>
             <li><span class="addr-info"><?php echo $addr; ?></span></li>
@@ -90,15 +90,15 @@
             <li>時間帯 <?php echo $zone; ?></li>
         </ul>
     </div>
-    /*戻る*/
+    <!--戻る-->
     <div class=button-back>
         <form method="GET" action="sample_home.php">
             <input type="submit" value="戻る">
         </form>
     </div>
-    /*YouTube動画の表示*/
+    <!-- Youtube動画の表示 -->
     <div class=youtube>
-        /*YouTube動画の埋め込み*/
+        <!-- YouTube動画の埋め込み -->
         <iframe width="768" height="432" src="<?php id($season,$zone,$weather); ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
@@ -300,8 +300,8 @@
                 $bgm_rand = array(
                     "https://www.youtube.com/embed/gzOJivYwZDA",
                 );
-                $bgm_rand = $bgm_rand[random_int(0, count($bgm_rand)-1)];
                 $bgm_rand = array_merge($bgm_rand, $evening);
+                $bgm_rand = $bgm_rand[random_int(0, count($bgm_rand)-1)];
                 echo $bgm_rand;
             }
             else{

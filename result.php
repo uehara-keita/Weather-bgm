@@ -1,12 +1,23 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>おてんきAPI</title>
+    <title>W-BGM System</title>
     <link rel="stylesheet" type="text/css" href="./css/result.css">
+    <!--========== データの受け取り ==========-->
+    <?php 
+    #時間帯情報の取得
+    $zone = @$_GET['zone']; 
+    
+    #住所情報の取得
+    $pref = @$_GET['pref'];
+    $city = @$_GET['city'];
+    $dist = @$_GET['dist'];
+    
+    #天気情報の取得
+    $season = @$_GET['season'];
+    ?>
 
     <!--========== 背景画像の切り替え ==========-->
-    #時間帯情報の取得
-    <?php $zone = @$_GET['zone']; ?>
 
     <?php if($zone=="midnight") { ?>
         <link rel="stylesheet" href="./css/midnight.css">
@@ -24,21 +35,11 @@
 
 </head>
 
-<!--========== 前ページからのデータ取得 ==========-->
-<?php
-    #住所情報の取得
-    $pref = @$_GET['pref'];
-    $city = @$_GET['city'];
-    $dist = @$_GET['dist'];
-    #住所として統合
-    $addr = $pref.$city.$dist;
-
-    #天気情報の取得
-    $season = @$_GET['season'];
-?>
-
 <!--========== 住所から緯度経度に変換 ==========-->
 <?php
+    #住所として統合
+    $addr = $pref.$city.$dist;
+    
     #xmlデータの取得
     $q = $addr;
     #リクエストURL
@@ -53,7 +54,7 @@
 <!--========== 天気情報処理 ==========-->
 <?php
     #darkskyのAPIkey
-    $key = "XXXXXXXXXXXXXXXXXXXXX"
+    $key = "XXXXXXXXXXXXXXXXXXXXXXX";
     #リクエストURL
     $req_d = "https://api.darksky.net/forecast/".$key."/".$lat.",".$lng."?units=si&lang=ja&exclude=alerts,flags";
 
@@ -75,7 +76,7 @@
 
 <!--========== ソース ==========-->
 <body>
-    /*天気情報の表示*/
+    <!-- 天気情報の表示 -->
     <div class=list-info>
         <ul>
             <li> <span class="addr-info"> <?php echo $addr; ?> </span> </li>
@@ -89,15 +90,15 @@
             <li>時間帯 <?php echo $zone; ?></li>
         </ul>
     </div>
-    /*戻る*/
+    <!--戻る-->
     <form method="GET" action="home.php">
         <div class=button-back>
             <input type="submit" value="戻る">
         </div>
     </form>
-    /*Youtube動画の表示*/
+    <!-- Youtube動画の表示 -->
     <div class=youtube>
-        /*YouTube動画の埋め込み*/
+        <!-- YouTube動画の埋め込み -->
         <iframe width="768" height="432" src="<?php id($season,$zone,$currentWeather); ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
@@ -299,8 +300,8 @@
                 $bgm_rand = array(
                     "https://www.youtube.com/embed/gzOJivYwZDA",
                 );
-                $bgm_rand = $bgm_rand[random_int(0, count($bgm_rand)-1)];
                 $bgm_rand = array_merge($bgm_rand, $evening);
+                $bgm_rand = $bgm_rand[random_int(0, count($bgm_rand)-1)];
                 echo $bgm_rand;
             }
             else{
